@@ -23,6 +23,10 @@ public class GildedRose {
                 decrementSellInBy1(i);
             }
 
+            if(checkNameEqualConjured(i)){
+                decrementQualityBy2(i);
+            }
+
             checkSellInLessThan0(i);
         }
     }
@@ -71,6 +75,10 @@ public class GildedRose {
         }
     }
 
+    private boolean checkNameEqualConjured(int i){
+        return (items[i].name.equals("Conjured"));
+    }
+
     private boolean checkNameEqualAgeBrie(int i){
         return (items[i].name.equals("Aged Brie"));
     }
@@ -93,6 +101,10 @@ public class GildedRose {
 
     private void decrementSellInBy1(int i) {
         items[i].sellIn = items[i].sellIn - 1;
+    }
+
+    private void decrementQualityBy2(int i) {
+        items[i].quality = items[i].quality - 2;
     }
 
     private void decrementQualityBy1(int i) {

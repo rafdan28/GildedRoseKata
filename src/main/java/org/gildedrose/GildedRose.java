@@ -93,7 +93,7 @@ public class GildedRose {
 
     private void checkQualityGreaterThan0(int i) {
         if (items[i].quality > 0) {
-            if (!checkNameEqualSulfuras(i)) {
+            if (!checkNameEqualSulfuras(i) && !checkNameEqualConjured(i)) {
                 decrementQualityBy1(i);
             }
         }

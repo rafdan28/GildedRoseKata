@@ -15,4 +15,15 @@ public class GildedRoseTest {
         assertEquals(gr.getItems()[0].sellIn, 9);
         assertEquals(gr.getItems()[0].quality, 21);
     }
+
+    @Test
+    void testUpdateQualityOnConjured() {
+        Item[] item = { new Item("Conjured", 10, 20)};
+        GildedRose gr = new GildedRose(item);
+
+        gr.updateQuality();
+
+        assertEquals(gr.getItems()[0].sellIn, 9);
+        assertEquals(gr.getItems()[0].quality, 18);
+    }
 }

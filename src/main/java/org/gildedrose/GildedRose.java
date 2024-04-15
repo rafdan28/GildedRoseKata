@@ -6,7 +6,7 @@ public class GildedRose {
     private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
     private static final String CONJURED = "Conjured";
 
-    Item[] items;
+    private Item[] items;
 
     public Item[] getItems() {
         return items;
@@ -80,6 +80,14 @@ public class GildedRose {
         }
     }
 
+    private void checkQualityGreaterThan0(int i) {
+        if (items[i].quality > 0) {
+            if (!isSulfuras(i) && !isConjured(i)) {
+                decrementQualityBy1(i);
+            }
+        }
+    }
+
     private boolean isAgedBrie(int i) {
         return AGED_BRIE.equals(items[i].name);
     }
@@ -94,14 +102,6 @@ public class GildedRose {
 
     private boolean isConjured(int i) {
         return CONJURED.equals(items[i].name);
-    }
-
-    private void checkQualityGreaterThan0(int i) {
-        if (items[i].quality > 0) {
-            if (!isSulfuras(i) && !isConjured(i)) {
-                decrementQualityBy1(i);
-            }
-        }
     }
 
     private void decrementSellInBy1(int i) {

@@ -1,6 +1,11 @@
 package org.gildedrose;
 
 public class GildedRose {
+    private static final String AGED_BRIE = "Aged Brie";
+    private static final String BACKSTAGE_PASSES = "Backstage passes to a TAFKAL80ETC concert";
+    private static final String SULFURAS = "Sulfuras, Hand of Ragnaros";
+    private static final String CONJURED = "Conjured";
+
     Item[] items;
 
     public Item[] getItems() {
@@ -13,17 +18,17 @@ public class GildedRose {
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-            if (!checkNameEqualAgeBrie(i) && !checkNameEqualPassConcert(i)) {
+            if (!isAgedBrie(i) && !isBackstagePasses(i)) {
                 checkQualityGreaterThan0(i);
             } else {
                 checkQualityLessThan50(i);
             }
 
-            if (!checkNameEqualSulfuras(i)) {
+            if (!isSulfuras(i)) {
                 decrementSellInBy1(i);
             }
 
-            if(checkNameEqualConjured(i)){
+            if(isConjured(i)){
                 decrementQualityBy2(i);
             }
 
@@ -35,7 +40,7 @@ public class GildedRose {
         if (items[i].quality < 50) {
             incrementQualityBy1(i);
 
-            if (checkNameEqualPassConcert(i)) {
+            if (isBackstagePasses(i)) {
                 checksellInLessThan11(i);
 
                 checksellInLessThan6(i);
@@ -61,8 +66,8 @@ public class GildedRose {
 
     private void checkSellInLessThan0(int i) {
         if (items[i].sellIn < 0) {
-            if (!checkNameEqualAgeBrie(i)) {
-                if (!checkNameEqualPassConcert(i)) {
+            if (!isAgedBrie(i)) {
+                if (!isBackstagePasses(i)) {
                     checkQualityGreaterThan0(i);
                 } else {
                     items[i].quality = items[i].quality - items[i].quality;
@@ -75,25 +80,25 @@ public class GildedRose {
         }
     }
 
-    private boolean checkNameEqualConjured(int i){
-        return (items[i].name.equals("Conjured"));
+    private boolean isAgedBrie(int i) {
+        return AGED_BRIE.equals(items[i].name);
     }
 
-    private boolean checkNameEqualAgeBrie(int i){
-        return (items[i].name.equals("Aged Brie"));
+    private boolean isBackstagePasses(int i) {
+        return BACKSTAGE_PASSES.equals(items[i].name);
     }
 
-    private boolean checkNameEqualSulfuras(int i){
-        return (items[i].name.equals("Sulfuras, Hand of Ragnaros"));
+    private boolean isSulfuras(int i) {
+        return SULFURAS.equals(items[i].name);
     }
 
-    private boolean checkNameEqualPassConcert(int i){
-        return (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert"));
+    private boolean isConjured(int i) {
+        return CONJURED.equals(items[i].name);
     }
 
     private void checkQualityGreaterThan0(int i) {
         if (items[i].quality > 0) {
-            if (!checkNameEqualSulfuras(i) && !checkNameEqualConjured(i)) {
+            if (!isSulfuras(i) && !isConjured(i)) {
                 decrementQualityBy1(i);
             }
         }

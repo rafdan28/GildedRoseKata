@@ -25,11 +25,11 @@ public class GildedRose {
             }
 
             if (!isSulfuras(i)) {
-                decrementSellInBy1(i);
+                decreaseSellInBy1(i);
             }
 
             if(isConjured(i)){
-                decrementQualityBy2(i);
+                decreaseQualityBy2(i);
             }
 
             checkSellInLessThan0(i);
@@ -83,7 +83,7 @@ public class GildedRose {
     private void checkQualityGreaterThan0(int i) {
         if (items[i].quality > 0) {
             if (!isSulfuras(i) && !isConjured(i)) {
-                decrementQualityBy1(i);
+                decreaseQualityBy1(i);
             }
         }
     }
@@ -104,15 +104,15 @@ public class GildedRose {
         return CONJURED.equals(items[i].name);
     }
 
-    private void decrementSellInBy1(int i) {
+    private void decreaseSellInBy1(int i) {
         items[i].sellIn = items[i].sellIn - 1;
     }
 
-    private void decrementQualityBy2(int i) {
+    private void decreaseQualityBy2(int i) {
         items[i].quality = items[i].quality - 2;
     }
 
-    private void decrementQualityBy1(int i) {
+    private void decreaseQualityBy1(int i) {
         items[i].quality = items[i].quality - 1;
     }
 
